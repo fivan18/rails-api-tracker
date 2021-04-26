@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
 
+  has_one :access_token, dependent: :destroy
+
   def password
     @password ||= Password.new(encrypted_password) if encrypted_password.present?
   end
