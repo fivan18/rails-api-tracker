@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Registrations', type: :request do
+RSpec.describe RegistrationsController do
   describe 'GET /create' do
     subject { post :create, params: params }
     context 'when invalid data provided' do
@@ -8,7 +8,7 @@ RSpec.describe 'Registrations', type: :request do
         {
           data: {
             attributes: {
-              login: nil,
+              username: nil,
               password: nil
             }
           }
@@ -29,7 +29,7 @@ RSpec.describe 'Registrations', type: :request do
         subject
         expect(json[:errors]).to include(
           {
-            login: ["can't be blank"]
+            username: ["can't be blank"]
           },
           {
             password: ["can't be blank"]
@@ -52,7 +52,7 @@ RSpec.describe 'Registrations', type: :request do
 
       it 'should return 201 http status code ' do
         subject
-        expect(response).to have_http_status(:create)
+        expect(response).to have_http_status(:created)
       end
 
       it 'should create a user' do
