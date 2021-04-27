@@ -1,5 +1,5 @@
 class AccessTokensController < ApplicationController
-  skip_before_action :authorize!, only: :create
+  before_action :authorize!, except: :create
 
   def create
     authenticator = UserAuthenticator.new(authentication_params)
