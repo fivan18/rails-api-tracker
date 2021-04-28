@@ -107,6 +107,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.3.1)
@@ -200,6 +202,7 @@ DEPENDENCIES
   jsonapi-serializer
   listen (~> 3.3)
   puma (~> 5.0)
+  rack-cors
   rails (~> 6.1.3, >= 6.1.3.1)
   rspec-rails (~> 5.0.0)
   rubocop (>= 1.0, < 2.0)
