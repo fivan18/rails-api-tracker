@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_185625) do
+ActiveRecord::Schema.define(version: 2021_04_29_200804) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string "token", null: false
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 2021_04_29_185625) do
     t.string "author"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "link"
+    t.integer "sets", null: false
+    t.integer "reps", null: false
+    t.integer "rest", null: false
+    t.string "tempo", null: false
+    t.integer "routine_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["routine_id"], name: "index_exercises_on_routine_id"
   end
 
   create_table "routines", force: :cascade do |t|
@@ -43,5 +56,6 @@ ActiveRecord::Schema.define(version: 2021_04_29_185625) do
   end
 
   add_foreign_key "access_tokens", "users"
+  add_foreign_key "exercises", "routines"
   add_foreign_key "routines", "users"
 end
