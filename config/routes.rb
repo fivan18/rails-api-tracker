@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
-  resources :books
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :routines do
+    resources :exercises
+  end
+  post 'login', to: 'access_tokens#create'
+  delete 'logout', to: 'access_tokens#destroy'
+  post 'sign_up', to: 'registrations#create'
 end
