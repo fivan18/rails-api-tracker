@@ -39,7 +39,8 @@ class ExercisesController < ApplicationController
       "INNER JOIN routines
         ON routines.id = exercises.routine_id
         AND routines.user_id = #{current_user.id}
-        AND exercises.name = '#{params[:name]}'"
+        AND exercises.name = '#{params[:name]}'
+      ORDER BY routines.day ASC"
     )
 
     render json: serializer.new(@exercises)
