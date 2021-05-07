@@ -1,5 +1,5 @@
 class Routine < ApplicationRecord
-  validates :day, presence: true, uniqueness: true
+  validates :day, presence: true
 
   belongs_to :user
 

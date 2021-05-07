@@ -13,9 +13,13 @@ class RoutinesController < ApplicationController
   end
 
   def create
-    @routine = current_user.routines.build(routine_params)
+    routines = current_user.routines
 
-    if @routine.save
+    @routine = routines.build(routine_params)
+
+    if routines.exists?(day: routine_params[:day])
+      render json: { day: ['has already been taken'] }, status: :unprocessable_entity
+    elsif @routine.save
       render json: serializer.new(@routine), status: :created, location: @routine
     else
       render json: @routine.errors, status: :unprocessable_entity

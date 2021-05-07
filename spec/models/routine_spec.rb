@@ -17,13 +17,5 @@ RSpec.describe Routine, type: :model do
       expect(routine).not_to be_valid
       expect(routine.errors[:day]).to include("can't be blank")
     end
-
-    it 'has a not unique day' do
-      routine = create :routine, user: user
-      expect(routine).to be_valid
-      routine_repeated_day = build :routine, user: user, day: routine.day
-      expect(routine_repeated_day).not_to be_valid
-      expect(routine_repeated_day.errors[:day]).to include('has already been taken')
-    end
   end
 end
