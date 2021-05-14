@@ -27,7 +27,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bcrypt'
 gem 'factory_bot_rails'
 gem 'jsonapi-serializer'
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors'
 gem 'rspec-rails', '~> 5.0.0'
 
 group :production do
