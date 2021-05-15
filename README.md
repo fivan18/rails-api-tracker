@@ -1,24 +1,70 @@
-# README
+# Track API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> An API to track your progress for chalisthenics routine.
 
-Things you may want to cover:
+<p align="center">
+    <img src="image.png">
+</p>
 
-* Ruby version
+## Built With
 
-* System dependencies
+- [Ruby on Rails](https://rubyonrails.org/)
 
-* Configuration
+## Live Demo
 
-* Database creation
+[https://evening-peak-09291.herokuapp.com/](https://evening-peak-09291.herokuapp.com/)
 
-* Database initialization
 
-* How to run the test suite
+## Getting Started
 
-* Services (job queues, cache servers, search engines, etc.)
+To get a local copy up and running follow these simple example steps.
 
-* Deployment instructions
+### Prerequisites
 
-* ...
+Make sure you have installed [Ruby 2.7.2](https://www.ruby-lang.org/en/news/2020/10/02/ruby-2-7-2-released/). [RVM](https://rvm.io/) manager could be useful to achieve this.
+
+### Setup
+
+Download the project
+
+    $ git clone https://github.com/fivan18/rails-api-tracker.git
+
+Install the dependencies
+
+    $ bundle
+
+### Run the server
+
+    $ rails s
+
+### Usage
+
+You can test the API locally with the next URL: [http://localhost:3000/](http://localhost:3000/).
+
+### Run tests
+
+    $ rspec
+
+### Deployment
+
+This project was deployed on [Heroku](https://heroku.com/). Follow [this](hhttps://devcenter.heroku.com/articles/getting-started-with-rails6) instructions to deploy the app.
+
+
+## Authors
+
+👤 **Ivan Ulises Guzman Sanchez**
+
+- Github: [@fivan18](https://github.com/fivan18)
+- Twitter: [@fivanunam](https://twitter.com/fivanunam)
+- Linkedin: [fivan](https://www.linkedin.com/in/fivan)
+
+
+## Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/fivan18/rails-api-tracker/issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
