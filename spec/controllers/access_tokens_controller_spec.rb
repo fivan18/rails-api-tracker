@@ -47,8 +47,7 @@ RSpec.describe AccessTokensController do
       it 'should return proper json body' do
         subject
         expect(json_data[:attributes]).to eq(
-          { id: user.access_token.id,
-            token: user.access_token.token }
+          { token: user.access_token.token }
         )
       end
     end
