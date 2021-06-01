@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_24_172904) do
+ActiveRecord::Schema.define(version: 2021_04_30_183508) do
+
+  create_table "access_tokens", force: :cascade do |t|
+    t.string "token", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -19,4 +27,35 @@ ActiveRecord::Schema.define(version: 2021_04_24_172904) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "exercises", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "link"
+    t.integer "sets", null: false
+    t.integer "reps", null: false
+    t.integer "rest", null: false
+    t.string "tempo", null: false
+    t.integer "routine_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["routine_id"], name: "index_exercises_on_routine_id"
+  end
+
+  create_table "routines", force: :cascade do |t|
+    t.date "day", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_routines_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "encrypted_password"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "access_tokens", "users"
+  add_foreign_key "exercises", "routines"
+  add_foreign_key "routines", "users"
 end
