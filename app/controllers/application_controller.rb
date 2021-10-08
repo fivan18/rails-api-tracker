@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
 
   rescue_from AuthorizationError, with: :authorization_error
   rescue_from User::Authenticator::AuthenticationError, with: :authentication_error
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   private
 
@@ -37,5 +38,15 @@ class ApplicationController < ActionController::API
       detail: 'You must provide valid credentials in order to exchange them for token.'
     }
     render json: { errors: [error] }, status: 401
+  end
+
+  def not_found
+    error = {
+      status: '404',
+      source: { pointer: '/' },
+      title: 'Resource not found',
+      detail: 'You must provide a valid resource id.'
+    }
+    render json: { errors: [error] }, status: 404
   end
 end
