@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   include BCrypt
-  validates :username, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :username, presence: true, uniqueness: true,
+    length: { minimum: 5, maximum: 20 }, allow_blank: false
+
+  validates :password, presence: true, length: { minimum: 8 }, 
+    allow_blank: false
 
   has_one :access_token, dependent: :destroy
   has_many :routines, dependent: :destroy
