@@ -2,7 +2,7 @@ class AccessTokensController < ApplicationController
   before_action :authorize!, except: :create
 
   def create
-    authenticator = UserAuthenticator.new(authentication_params)
+    authenticator = User::Authenticator.new(authentication_params.to_h.symbolize_keys)
     authenticator.perform
 
     render json: AccessTokenSerializer.new(authenticator.access_token), status: :created
@@ -15,6 +15,9 @@ class AccessTokensController < ApplicationController
   private
 
   def authentication_params
-    params.dig(:data, :attributes)&.permit(:username, :password).to_h.symbolize_keys
+    params
+      .require(:user)
+      .permit(:username, :password) ||
+      ApplicationController::Parameters.new
   end
 end
