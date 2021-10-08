@@ -11,8 +11,7 @@ class RegistrationsController < ApplicationController
 
   def registration_params
     params
-      .require(:data)
-      .require(:attributes)
+      .require(:user)
       .permit(:username, :password) ||
       ApplicationController::Parameters.new
   end
