@@ -60,8 +60,8 @@ RSpec.describe RegistrationsController do
       it 'should return proper json' do
         subject
         expect(json_data).to include({
-                                                    username: 'ivancito'
-                                                  })
+                                       username: 'ivancito'
+                                     })
       end
     end
   end

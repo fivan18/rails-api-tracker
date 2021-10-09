@@ -5,7 +5,7 @@ RSpec.describe AccessToken, type: :model do
     let(:user) { create :user }
 
     it 'should have a token present after initialize' do
-      access_token = build :access_token, user:user
+      access_token = build :access_token, user: user
       expect(access_token.token).to be_present
     end
 

@@ -50,10 +50,10 @@ RSpec.describe AccessTokensController do
 
       it 'should return proper json body' do
         subject
-        expect(json_data).to eq({ 
-          token: user.access_token.token,
-          user: { username: user.username}
-        })
+        expect(json_data).to eq({
+                                  token: user.access_token.token,
+                                  user: { username: user.username }
+                                })
       end
     end
   end

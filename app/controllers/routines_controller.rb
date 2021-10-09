@@ -23,7 +23,7 @@ class RoutinesController < ApplicationController
 
   def update
     @routine.update!(routine_params)
-    
+
     render json: @routine, status: :ok
   rescue ActiveRecord::RecordInvalid
     render json: { errors: @routine.errors }, status: :unprocessable_entity

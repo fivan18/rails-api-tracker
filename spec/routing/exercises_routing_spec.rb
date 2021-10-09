@@ -27,7 +27,7 @@ RSpec.describe ExercisesController, type: :routing do
     end
 
     it 'routes to #progress' do
-    expect(get: '/progress/pull-up').to route_to('exercises#progress', name: 'pull-up')
-  end
+      expect(get: '/progress/pull-up').to route_to('exercises#progress', name: 'pull-up')
+    end
   end
 end
