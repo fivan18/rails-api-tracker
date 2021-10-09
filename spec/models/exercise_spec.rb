@@ -34,7 +34,7 @@ RSpec.describe Exercise, type: :model do
       expect(exercise.errors[:rest]).to include("can't be blank")
     end
 
-    it 'has an invalid rempo' do
+    it 'has an invalid tempo' do
       exercise = build :exercise, routine: routine, tempo: ''
       expect(exercise).not_to be_valid
       expect(exercise.errors[:tempo]).to include("can't be blank")
