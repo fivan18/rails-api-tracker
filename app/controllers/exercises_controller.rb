@@ -6,18 +6,18 @@ class ExercisesController < ApplicationController
   def index
     @exercises = @routine.exercises.all
 
-    render json: serializer.new(@exercises), status: :ok
+    render json: @exercises, status: :ok
   end
 
   def show
-    render json: serializer.new(@exercise), status: :ok
+    render json: @exercise, status: :ok
   end
 
   def create
     @exercise = @routine.exercises.build(exercise_params)
     @exercise.save!
 
-    render json: serializer.new(@exercise), status: :created
+    render json: @exercise, status: :created
   rescue ActiveRecord::RecordInvalid
     render json: { errors: @exercise.errors }, status: :unprocessable_entity
   end
@@ -25,7 +25,7 @@ class ExercisesController < ApplicationController
   def update
     @exercise.update!(exercise_params)
 
-    render json: serializer.new(@exercise), status: :ok
+    render json: @exercise, status: :ok
   rescue ActiveRecord::RecordInvalid
     render json: { errors: @exercise.errors }, status: :unprocessable_entity
   end
@@ -38,7 +38,7 @@ class ExercisesController < ApplicationController
     @exercises = Exercise.joins(:routine).where("routines.user_id = #{@current_user.id}
       AND exercises.name = '#{params[:name]}'").order('routines.day ASC')
 
-    render json: serializer.new(@exercises), status: :ok
+    render json: @exercises, status: :ok
   end
 
   private
@@ -51,10 +51,6 @@ class ExercisesController < ApplicationController
     params
       .require(:exercise)
       .permit(:name, :link, :sets, :reps, :rest, :tempo) || ApplicationController::Parameters.new
-  end
-
-  def serializer
-    ExerciseSerializer
   end
 
   def routine
