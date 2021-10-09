@@ -16,15 +16,15 @@ class RoutinesController < ApplicationController
     @routine = @current_user.routines.build(routine_params)
     @routine.save!
 
-    render json: serializer.new(@routine), status: :created, location: @routine
+    render json: serializer.new(@routine), status: :created
   rescue ActiveRecord::RecordInvalid
-      render json: { errors: @routine.errors }, status: :unprocessable_entity
+    render json: { errors: @routine.errors }, status: :unprocessable_entity
   end
 
   def update
     @routine.update!(routine_params)
     
-    render json: serializer.new(@routine), status: :ok, location: @routine
+    render json: serializer.new(@routine), status: :ok
   rescue ActiveRecord::RecordInvalid
     render json: { errors: @routine.errors }, status: :unprocessable_entity
   end
