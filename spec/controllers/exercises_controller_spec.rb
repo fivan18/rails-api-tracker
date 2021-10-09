@@ -6,30 +6,26 @@ RSpec.describe '/exercises', type: :request do
 
   let(:valid_attributes) do
     {
-      data: {
-        attributes: {
-          name: 'Pull up',
-          link: 'https://www.youtube.com/watch?v=UT57qqp3zF8',
-          sets: 3,
-          reps: 5,
-          rest: 120,
-          tempo: '20x0'
-        }
+      exercise: {
+        name: 'Pull up',
+        link: 'https://www.youtube.com/watch?v=UT57qqp3zF8',
+        sets: 3,
+        reps: 5,
+        rest: 120,
+        tempo: '20x0'
       }
     }
   end
 
   let(:invalid_attributes) do
     {
-      data: {
-        attributes: {
-          name: '',
-          link: 'https://www.youtube.com/watch?v=UT57qqp3zF8',
-          sets: 3,
-          reps: 5,
-          rest: 120,
-          tempo: ''
-        }
+      exercise: {
+        name: '',
+        link: 'https://www.youtube.com/watch?v=UT57qqp3zF8',
+        sets: 3,
+        reps: 5,
+        rest: 120,
+        tempo: ''
       }
     }
   end
@@ -100,15 +96,13 @@ RSpec.describe '/exercises', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          data: {
-            attributes: {
-              name: 'New pull up',
-              link: 'https://www.youtube.com/watch?v=UT57qqp3zF8',
-              sets: 3,
-              reps: 5,
-              rest: 120,
-              tempo: '20x0'
-            }
+          exercise: {
+            name: 'New pull up',
+            link: 'https://www.youtube.com/watch?v=UT57qqp3zF8',
+            sets: 3,
+            reps: 5,
+            rest: 120,
+            tempo: '20x0'
           }
         }
       end
