@@ -25,5 +25,9 @@ RSpec.describe ExercisesController, type: :routing do
     it 'routes to #destroy' do
       expect(delete: '/routines/1/exercises/1').to route_to('exercises#destroy', routine_id: '1', id: '1')
     end
+
+    it 'routes to #progress' do
+    expect(get: '/progress/pull-up').to route_to('exercises#progress', name: 'pull-up')
+  end
   end
 end
