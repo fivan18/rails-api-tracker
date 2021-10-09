@@ -10,6 +10,11 @@ RSpec.describe Exercise, type: :model do
       expect(exercise).to be_valid
     end
 
+    it 'has a valid link' do
+      exercise = build :exercise, routine: routine, link: ''
+      expect(exercise).to be_valid
+    end
+
     it 'has an invalid name' do
       exercise = build :exercise, routine: routine, name: ''
       expect(exercise).not_to be_valid
