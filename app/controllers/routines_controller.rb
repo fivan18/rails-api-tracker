@@ -5,18 +5,18 @@ class RoutinesController < ApplicationController
   def index
     @routines = @current_user.routines.all
 
-    render json: serializer.new(@routines), status: :ok
+    render json: @routines, status: :ok
   end
 
   def show
-    render json: serializer.new(@routine), status: :ok
+    render json: @routine, status: :ok
   end
 
   def create
     @routine = @current_user.routines.build(routine_params)
     @routine.save!
 
-    render json: serializer.new(@routine), status: :created
+    render json: @routine, status: :created
   rescue ActiveRecord::RecordInvalid
     render json: { errors: @routine.errors }, status: :unprocessable_entity
   end
@@ -24,7 +24,7 @@ class RoutinesController < ApplicationController
   def update
     @routine.update!(routine_params)
     
-    render json: serializer.new(@routine), status: :ok
+    render json: @routine, status: :ok
   rescue ActiveRecord::RecordInvalid
     render json: { errors: @routine.errors }, status: :unprocessable_entity
   end
@@ -43,9 +43,5 @@ class RoutinesController < ApplicationController
     params
       .require(:routine)
       .permit(:day) || ApplicationController::Parameters.new
-  end
-
-  def serializer
-    RoutineSerializer
   end
 end
