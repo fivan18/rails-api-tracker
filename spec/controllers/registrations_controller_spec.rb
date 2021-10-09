@@ -1,16 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe RegistrationsController do
-  describe 'GET /create' do
+  describe 'POST /create' do
     subject { post :create, params: params }
     context 'when invalid data provided' do
       let(:params) do
         {
-          data: {
-            attributes: {
-              username: nil,
-              password: nil
-            }
+          user: {
+            username: nil,
+            password: nil
           }
         }
       end
@@ -29,10 +27,10 @@ RSpec.describe RegistrationsController do
         subject
         expect(json[:errors]).to include(
           {
-            username: ["can't be blank"]
+            username: ["can't be blank", 'is too short (minimum is 5 characters)']
           },
           {
-            password: ["can't be blank"]
+            password: ["can't be blank", 'is too short (minimum is 8 characters)']
           }
         )
       end
@@ -41,11 +39,9 @@ RSpec.describe RegistrationsController do
     context 'when valid data provided' do
       let(:params) do
         {
-          data: {
-            attributes: {
-              username: 'ivancito',
-              password: 'ivancitopassword'
-            }
+          user: {
+            username: 'ivancito',
+            password: 'ivancitopassword'
           }
         }
       end
@@ -63,7 +59,7 @@ RSpec.describe RegistrationsController do
 
       it 'should return proper json' do
         subject
-        expect(json_data[:attributes]).to include({
+        expect(json_data).to include({
                                                     username: 'ivancito'
                                                   })
       end
