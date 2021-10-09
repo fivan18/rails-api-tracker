@@ -4,7 +4,7 @@ shared_examples_for 'unauthorized_standard_requests' do
   let(:authentication_error) do
     {
       status: '401',
-      source: { pointer: '/data/attributes/password' },
+      source: { pointer: '/user/params' },
       title: 'Invalid login or password',
       detail: 'You must provide valid credentials in order to exchange them for token.'
     }
