@@ -1,6 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :authorize!
-  before_action :routine
+  before_action :routine, except: %i[progress]
   before_action :set_exercise, only: %i[show update destroy]
 
   def index
@@ -35,7 +35,7 @@ class ExercisesController < ApplicationController
   end
 
   def progress
-    @exercise = Exercise.joins(:routine).where("routines.user_id = #{@current_user.id}
+    @exercises = Exercise.joins(:routine).where("routines.user_id = #{@current_user.id}
       AND exercises.name = '#{params[:name]}'").order('routines.day ASC')
 
     render json: serializer.new(@exercises), status: :ok
