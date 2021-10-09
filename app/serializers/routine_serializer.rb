@@ -1,4 +1,5 @@
-class RoutineSerializer
-  include JSONAPI::Serializer
-  attributes :day
+class RoutineSerializer < ActiveModel::Serializer
+  attributes :id, :day
+
+  has_many :exercises, serializer: ExerciseSerializer
 end

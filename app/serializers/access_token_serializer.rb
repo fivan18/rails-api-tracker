@@ -1,6 +1,5 @@
-class AccessTokenSerializer
-  include JSONAPI::Serializer
+class AccessTokenSerializer < ActiveModel::Serializer
   attributes :token
 
-  belongs_to :user
+  belongs_to :user, serializer: UserSerializer
 end
