@@ -2,7 +2,8 @@ class ApplicationController < ActionController::API
   class AuthorizationError < StandardError; end
 
   rescue_from AuthorizationError, with: :authorization_error
-  rescue_from UserAuthenticator::AuthenticationError, with: :authentication_error
+  rescue_from User::Authenticator::AuthenticationError, with: :authentication_error
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   private
 
@@ -32,10 +33,20 @@ class ApplicationController < ActionController::API
   def authentication_error
     error = {
       status: '401',
-      source: { pointer: '/data/attributes/password' },
+      source: { pointer: '/user/params' },
       title: 'Invalid login or password',
       detail: 'You must provide valid credentials in order to exchange them for token.'
     }
     render json: { errors: [error] }, status: 401
+  end
+
+  def not_found
+    error = {
+      status: '404',
+      source: { pointer: '/' },
+      title: 'Resource not found',
+      detail: 'You must provide a valid resource id.'
+    }
+    render json: { errors: [error] }, status: 404
   end
 end

@@ -4,6 +4,6 @@ module Helpers
   end
 
   def json_data
-    json[:data]
+    json
   end
 end

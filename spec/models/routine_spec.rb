@@ -17,5 +17,13 @@ RSpec.describe Routine, type: :model do
       expect(routine).not_to be_valid
       expect(routine.errors[:day]).to include("can't be blank")
     end
+
+    it 'should validate uniqueness of day' do
+      routine = create :routine, user: user, day: '2021-8-21'
+      other_routine = build :routine, user: user, day: routine.day
+      expect(other_routine).not_to be_valid
+      other_routine.day = '2021-8-20'
+      expect(other_routine).to be_valid
+    end
   end
 end

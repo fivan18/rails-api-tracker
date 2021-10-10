@@ -4,14 +4,18 @@ RSpec.describe AccessTokensController do
   describe 'POST /create' do
     let(:params) do
       {
-        data: {
-          attributes: { username: 'ivancito', password: 'password' }
-        }
+        user: { username: 'ivancito', password: 'password' }
+      }
+    end
+
+    let(:invalid_params) do
+      {
+        user: { username: '', password: '' }
       }
     end
 
     context 'when no auth_data provided' do
-      subject { post :create }
+      subject { post :create, params: invalid_params }
       it_behaves_like 'unauthorized_standard_requests'
     end
 
@@ -46,9 +50,10 @@ RSpec.describe AccessTokensController do
 
       it 'should return proper json body' do
         subject
-        expect(json_data[:attributes]).to eq(
-          { token: user.access_token.token }
-        )
+        expect(json_data).to eq({
+                                  token: user.access_token.token,
+                                  user: { username: user.username }
+                                })
       end
     end
   end

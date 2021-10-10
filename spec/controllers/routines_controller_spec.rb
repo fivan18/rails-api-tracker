@@ -34,17 +34,17 @@ RSpec.describe '/routines', type: :request do
       it 'creates a new Routine' do
         expect do
           post routines_url,
-               params: { data: {
-                 attributes: valid_attributes
-               } }, headers: valid_headers, as: :json
+               params: {
+                 routine: valid_attributes
+               }, headers: valid_headers, as: :json
         end.to change(Routine, :count).by(1)
       end
 
       it 'renders a JSON response with the new routine' do
         post routines_url,
-             params: { data: {
-               attributes: valid_attributes
-             } }, headers: valid_headers, as: :json
+             params: {
+               routine: valid_attributes
+             }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including('application/json'))
       end
@@ -54,14 +54,14 @@ RSpec.describe '/routines', type: :request do
       it 'does not create a new Routine' do
         expect do
           post routines_url,
-               params: { data: { attributes: invalid_attributes } },
+               params: { routine: invalid_attributes },
                headers: valid_headers, as: :json
         end.to change(Routine, :count).by(0)
       end
 
       it 'renders a JSON response with errors for the new routine' do
         post routines_url,
-             params: { data: { attributes: invalid_attributes } },
+             params: { routine: invalid_attributes },
              headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json; charset=utf-8')
@@ -81,7 +81,7 @@ RSpec.describe '/routines', type: :request do
         routine = create :routine, user: user
         expect do
           patch routine_url(routine),
-                params: { data: { attributes: new_attributes } },
+                params: { routine: new_attributes },
                 headers: valid_headers, as: :json
           routine.reload
         end.to change(Routine, :count).by(0)
@@ -90,7 +90,7 @@ RSpec.describe '/routines', type: :request do
       it 'renders a JSON response with the routine' do
         routine = create :routine, user: user
         patch routine_url(routine),
-              params: { data: { attributes: new_attributes } },
+              params: { routine: new_attributes },
               headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including('application/json'))
@@ -101,7 +101,7 @@ RSpec.describe '/routines', type: :request do
       it 'renders a JSON response with errors for the routine' do
         routine = create :routine, user: user
         patch routine_url(routine),
-              params: { data: { attributes: invalid_attributes } },
+              params: { routine: invalid_attributes },
               headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json; charset=utf-8')

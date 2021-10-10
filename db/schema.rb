@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_183508) do
+ActiveRecord::Schema.define(version: 2021_10_08_215006) do
 
   create_table "access_tokens", force: :cascade do |t|
     t.string "token", null: false
@@ -18,13 +18,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_183508) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_access_tokens_on_user_id"
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.string "author"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -45,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_183508) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["day", "user_id"], name: "index_routines_on_day_and_user_id", unique: true
     t.index ["user_id"], name: "index_routines_on_user_id"
   end
 
@@ -53,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_183508) do
     t.string "encrypted_password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "access_tokens", "users"

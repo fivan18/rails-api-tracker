@@ -1,4 +1,3 @@
-class ExerciseSerializer
-  include JSONAPI::Serializer
-  attributes :name, :link, :sets, :reps, :rest, :tempo, :routine
+class ExerciseSerializer < ActiveModel::Serializer
+  attributes :id, :name, :link, :sets, :reps, :rest, :tempo
 end

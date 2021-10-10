@@ -1,4 +1,4 @@
-class UserAuthenticator
+class User::Authenticator
   attr_reader :access_token
 
   class AuthenticationError < StandardError; end

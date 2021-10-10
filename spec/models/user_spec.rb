@@ -14,6 +14,18 @@ RSpec.describe User, type: :model do
       expect(user.errors.messages[:password]).to include("can't be blank")
     end
 
+    it 'should validate minimum length of username' do
+      user = build :user, username: 'ivan', password: 'password'
+      expect(user).not_to be_valid
+      expect(user.errors.messages[:username]).to include('is too short (minimum is 5 characters)')
+    end
+
+    it 'should validate maximum length of username' do
+      user = build :user, username: 'ivanqwqwqwqwqwqwqwqwqw', password: 'password'
+      expect(user).not_to be_valid
+      expect(user.errors.messages[:username]).to include('is too long (maximum is 20 characters)')
+    end
+
     it 'should validate uniqueness of username' do
       user = create :user
       other_user = build :user, username: user.username
