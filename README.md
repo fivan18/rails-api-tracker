@@ -2,9 +2,9 @@
 
 > An API to track your progress for chalisthenics routine.
 
-<p align="center">
-    <img src="image.png">
-</p>
+## API Docs
+
+[https://app.swaggerhub.com/apis-docs/fivan/Ivan/1.0.0](https://app.swaggerhub.com/apis-docs/fivan/Ivan/1.0.0)
 
 ## Built With
 
@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-[https://evening-peak-09291.herokuapp.com/](https://evening-peak-09291.herokuapp.com/)
+[https://calisthenics-routines-api.herokuapp.com/](https://calisthenics-routines-api.herokuapp.com/)
 
 
 ## Getting Started
